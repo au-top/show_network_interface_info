@@ -13,10 +13,9 @@ class ShowNetworkInterfaceInfo {
     return version;
   }
 
-  static Future<void> get getNetWorkInfo async {
+  static Future<dynamic> get getNetWorkInfo async {
     final getNetWorkInfo = await _channel.invokeMethod('getNetWorkInfo');
-    print(getNetWorkInfo);
-    return null;
+    return getNetWorkInfo;
   }
 
 }
