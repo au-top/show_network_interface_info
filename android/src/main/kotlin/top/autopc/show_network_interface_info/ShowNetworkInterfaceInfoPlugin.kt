@@ -45,6 +45,7 @@ class ShowNetworkInterfaceInfoPlugin : FlutterPlugin, MethodCallHandler , Activi
                 resMap["gateway"] = intToString(dhcpInfo.gateway);
                 resMap["ip"] = intToString(dhcpInfo.ipAddress);
                 resMap["ipMask"] = intToString(dhcpInfo.netmask);
+                resMap["ipMask"] = "Wifi";
                 val networkBox:HashMap<String, Any> = HashMap();
                 networkBox["index"]=1;
                 networkBox["networkInfoList"]= listOf(resMap);

@@ -29,6 +29,7 @@ flutter::EncodableList * FlutterGetNetWorkInfo()
                 networkInfoElemMap->insert(std::pair<flutter::EncodableValue,flutter::EncodableValue>("ip",pIpAddrString->IpAddress.String));
                 networkInfoElemMap->insert(std::pair<flutter::EncodableValue,flutter::EncodableValue>("ipMask",pIpAddrString->IpMask.String));
                 networkInfoElemMap->insert(std::pair<flutter::EncodableValue,flutter::EncodableValue>("gateway",pIpAdapterInfo->GatewayList.IpAddress.String));
+                networkInfoElemMap->insert(std::pair<flutter::EncodableValue,flutter::EncodableValue>("name",pIpAdapterInfo->AdapterName));
                 networkInfoList->push_back(*networkInfoElemMap);
                 pIpAddrString = pIpAddrString->Next;
             } while (pIpAddrString);
