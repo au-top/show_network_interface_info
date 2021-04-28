@@ -1,17 +1,25 @@
-import 'dart:async';
+class NetworkDevice {
+  late int index;
+  late List<NetworkInfo> networkInfoList;
 
-import 'package:flutter/services.dart';
-import 'package:show_network_interface_info/model/NetworkDevice.dart';
-
-class ShowNetworkInterfaceInfo {
-  static const MethodChannel _channel =
-      const MethodChannel('show_network_interface_info');
-
-  static Future<List<NetworkDevice>> get getNetWorkInfo async {
-    final getNetWorkInfo = await _channel.invokeMethod('getNetWorkInfo');
-    return (getNetWorkInfo as List<Object?>)
-        .map((e) => NetworkDevice.fromMap(e as Map))
+  NetworkDevice.fromMap(Map mapContent) {
+    this.index = mapContent["index"];
+    this.networkInfoList = (mapContent["networkInfoList"] as List<Object?>)
+        .map((e) => NetworkInfo.fromMap(e as Map))
         .toList();
+  }
+}
+
+class NetworkInfo {
+  late String gateway;
+  late String ip;
+  late String ipMask;
+  late String name;
+  NetworkInfo.fromMap(Map mapContent) {
+    this.gateway = mapContent["gateway"];
+    this.ip = mapContent["ip"];
+    this.ipMask = mapContent["ipMask"];
+    this.name = mapContent["name"];
   }
 }
 

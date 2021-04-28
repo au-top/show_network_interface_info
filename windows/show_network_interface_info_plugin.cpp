@@ -59,27 +59,16 @@ ShowNetworkInterfaceInfoPlugin::~ShowNetworkInterfaceInfoPlugin() {}
 void ShowNetworkInterfaceInfoPlugin::HandleMethodCall(
     const flutter::MethodCall<flutter::EncodableValue> &method_call,
     std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result) {
-      
-  if (method_call.method_name().compare("getPlatformVersion") == 0) {
-    std::ostringstream version_stream;
-    version_stream << "Windows ";
-    if (IsWindows10OrGreater()) {
-      version_stream << "10+";
-    } else if (IsWindows8OrGreater()) {
-      version_stream << "8";
-    } else if (IsWindows7OrGreater()) {
-      version_stream << "7";
-    }
-    result->Success(flutter::EncodableValue(version_stream.str()));
-    return;
-  } 
 
   if(method_call.method_name().compare("getNetWorkInfo")==0){
     auto resDataPoint = FlutterGetNetWorkInfo();
     result->Success(*resDataPoint);
+    return;
+  }else{
+    result->NotImplemented();
+    return;
   }
 
-  result->NotImplemented();
 }
 
 }  // namespace
